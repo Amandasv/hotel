@@ -3,5 +3,6 @@
   Email: <input type="email" [(ngModel)]="user.email" name="email"><br>
   Birthdate: <input type="text" [(ngModel)]="user.birthdate" name="birthdate"><br>
   CPF: <input type="text" [(ngModel)]="user.cpf" name="cpf"><br>  
-  <input type="submit" value="Enviar" (click)="onSubmit()" >
+  <input type="button" value="Enviar" (click)="saveUser()" >
+  <input type="button" value="Cancelar" (click)="reset()">
 </form>

@@ -10,7 +10,16 @@ import { AccommodationComponent } from './accommodation/accommodation.component'
 import { FormComponent } from './user/form/form.component';
 import { TableComponent } from './user/table/table.component';
 import { UserService } from "app/user/user.service";
+import { RouterModule, Routes } from '@angular/router';
 
+const routes: Routes = [
+  { path: '', redirectTo: 'lista', pathMatch: 'full' },
+  { path: 'lista', component: TableComponent },
+  { path: 'novo', component: FormComponent },
+  { path: 'edicao/:id', component: FormComponent },
+  //{ path: '', component},
+  
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +32,8 @@ import { UserService } from "app/user/user.service";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

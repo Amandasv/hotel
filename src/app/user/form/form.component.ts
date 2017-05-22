@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../user.service";
 import { User } from "../user";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -8,18 +9,41 @@ import { User } from "../user";
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
+  title = "Cadastro de usuários";
   user: User;
+  id: number;
 
-  constructor(private service: UserService) { }
+  constructor(
+    private service: UserService,
+    private router:Router,
+    private route:ActivatedRoute
+    ) { }
 
   ngOnInit() {
-    this.user = new User(); 
+    this.id = this.route.snapshot.params['id'];
+
+    if(isNaN(this.id)){
+      this.user = new User();
+    }
+    else {
+      this.user = Object.assign({},
+        this.service.getUserById(this.id)
+      );
+    }
+    
   }
 
-  onSubmit(){
-    this.service.addUser(this.user);
-    this.user = new User();
-
+  saveUser(){
+    if(isNaN(this.id)){
+      this.service.addUser(this.user);
+      this.user = new User();
+    }
+    else {
+      this.service.updateUser(this.id, this.user);
+    }
+    this.router.navigate(['/lista']);
+  }
+  reset() {
+    this.router.navigate(['/lista']);
   }
 }

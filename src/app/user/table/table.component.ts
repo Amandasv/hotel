@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../user";
 import { UserService } from "../user.service";
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -8,7 +9,7 @@ import { UserService } from "../user.service";
 })
 export class TableComponent implements OnInit {
 
- users: User[];
+ users: User[] = [];
 
   constructor(private service: UserService) {
   
@@ -16,6 +17,10 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.users = this.service.getUsers();
+  }
+
+  delete(user:User){
+    this.service.deleteUser(user);
   }
 
 }
