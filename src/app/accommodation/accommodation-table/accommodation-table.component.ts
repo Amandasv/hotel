@@ -4,10 +4,10 @@ import { AccommodationService } from "../accommodation.service";
 
 @Component({
   selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  templateUrl: './accommodation-table.component.html',
+  styleUrls: ['./accommodation-table.component.css']
 })
-export class TableComponent implements OnInit {
+export class AccommodationTableComponent implements OnInit {
 
  accommodations: Accommodation[] = [];
 

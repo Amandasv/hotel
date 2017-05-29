@@ -6,17 +6,24 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { AccommodationComponent } from './accommodation/accommodation.component';
-import { FormComponent } from './accommodation/form/form.component';
-import { TableComponent } from './accommodation/table/table.component';
+import { AccommodationFormComponent } from './accommodation/accommodation-form/accommodation-form.component';
+import { AccommodationTableComponent } from './accommodation/accommodation-table/accommodation-table.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AccommodationService } from "./accommodation/accommodation.service";
+import { RoomComponent } from './room/room.component';
+import { RoomService } from "./room/room.service";
+import { RoomFormComponent } from "./room/room-form/room-form.component";
+import { RoomTableComponent } from "./room/room-table/room-table.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lista', pathMatch: 'full' },
-  { path: 'lista', component: TableComponent },
-  { path: 'novo', component: FormComponent },
-  { path: 'edicao/:id', component: FormComponent },
+  { path: '', redirectTo: 'quartos/lista', pathMatch: 'full' },
+  { path: 'quartos/lista', component: RoomTableComponent },
+  { path: 'quarto/novo', component: RoomFormComponent },
+  { path: 'quarto/edicao/:id', component: RoomFormComponent },
+  { path: 'acomodacoes/lista', component: AccommodationTableComponent },
+  { path: 'acomodacao/novo', component: AccommodationFormComponent },
+  { path: 'acomodacao/edicao/:id', component: AccommodationFormComponent },
   //{ path: '', component},
   
 ];
@@ -24,8 +31,11 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     AccommodationComponent,
-    FormComponent,
-    TableComponent
+    AccommodationFormComponent,
+    AccommodationTableComponent,
+    RoomComponent,
+    RoomFormComponent,
+    RoomTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +43,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AccommodationService],
+  providers: [AccommodationService, RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

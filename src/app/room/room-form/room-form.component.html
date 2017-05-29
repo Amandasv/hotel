@@ -1,0 +1,8 @@
+<form>
+  Número do quarto: <input type="text" [(ngModel)]="room.roomNumber" name="roomNumber"><br>
+  Categoria: <input type="text" [(ngModel)]="room.category" name="category"><br>
+  Preço: <input type="text" [(ngModel)]="room.price" name="price"><br>  
+  Descrição: <input type="text" [(ngModel)]="room.description" name="description"><br>
+  <input type="button" value="Enviar" (click)="saveRoom()" >
+  <input type="button" value="Cancelar" (click)="reset()">
+</form>

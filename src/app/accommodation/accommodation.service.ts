@@ -6,12 +6,12 @@ export class AccommodationService {
 
   accommodations: Accommodation[] = [{
     id: 1,
-    room:'102',
     category:'básico',
-    observation: 'observação'
+    price:120,
+    description: 'descrição'
   }];
 
-  autoIncremet:number = 1;
+  autoIncrement:number = 1;
 
   constructor() { }
 
@@ -21,7 +21,7 @@ export class AccommodationService {
   }
 
   addAccommodation(accommodation: Accommodation){
-    accommodation.id = this.autoIncremet++;
+    accommodation.id = this.autoIncrement++;
     this.accommodations.push(accommodation);
   }
 

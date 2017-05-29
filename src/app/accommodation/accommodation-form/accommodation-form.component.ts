@@ -5,11 +5,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  templateUrl: './accommodation-form.component.html',
+  styleUrls: ['./accommodation-form.component.css']
 })
-export class FormComponent implements OnInit {
-  title = "Cadastro de usuários";
+export class AccommodationFormComponent implements OnInit {
+  title = "Cadastro de acomodação";
   accommodation: Accommodation;
   id: number;
 

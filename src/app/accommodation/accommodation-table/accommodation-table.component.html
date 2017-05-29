@@ -1,15 +1,15 @@
 <table>
   <tr>
-    <th>Número do Quarto</th>
     <th>Categoria (Básico, VIP, Premium)</th>
-    <th>Observação</th>    
+    <th>Preço</th>
+    <th>Descrição</th>
     <th>Editar</th>
     <th>Remover</th>
   </tr>
   <tr *ngFor='let accommodation of accommodations'>
-    <td>{{accommodation.room}}</td>
     <td>{{accommodation.category}}</td>
-    <td>{{accommodation.observation}}</td>
+    <td>{{accommodation.price}}</td>
+    <td>{{accommodation.description}}</td>
     <td><a [routerLink]="['/edicao', accommodation.id]">Editar</a></td>
     <td><a routerLink="/lista" (click)="delete(accommodation)">Remover</a></td>
   </tr>

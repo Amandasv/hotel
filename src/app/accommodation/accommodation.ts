@@ -1,7 +1,7 @@
 export class Accommodation {
-    id:number
-    room:string;
+    id:number;
     category:string;
-    observation:string;
+    price: number;
+    description:string;
 }
 
