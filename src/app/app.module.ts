@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { RoomComponent } from './room/room.component';
+
 import { AccommodationComponent } from './accommodation/accommodation.component';
-import { FormComponent } from './user/form/form.component';
-import { TableComponent } from './user/table/table.component';
-import { UserService } from "app/user/user.service";
+import { FormComponent } from './accommodation/form/form.component';
+import { TableComponent } from './accommodation/table/table.component';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AccommodationService } from "./accommodation/accommodation.service";
 
 const routes: Routes = [
   { path: '', redirectTo: 'lista', pathMatch: 'full' },
@@ -23,8 +23,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    RoomComponent,
     AccommodationComponent,
     FormComponent,
     TableComponent
@@ -35,7 +33,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [UserService],
+  providers: [AccommodationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
