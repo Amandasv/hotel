@@ -12,7 +12,7 @@
     <td>{{user.email}}</td>
     <td>{{user.birthdate}}</td>
     <td>{{user.rg}}</td>
-    <td><a [routerLink]="['/usuario/edicao', user.id]">Editar</a></td>
+    <td><a [routerLink]="['/usuarios/edicao', user.id]">Editar</a></td>
     <td><a routerLink="/usuarios/lista" (click)="delete(user)">Remover</a></td>
   </tr>
 </table>

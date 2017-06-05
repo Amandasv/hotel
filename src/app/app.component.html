@@ -1,9 +1,35 @@
-<h1>
-    {{ title }}
-</h1>
-<nav>
-    <a routerLink="usuarios">Usuários</a>
-    <a routerLink="quartos">Quartos</a>
-    <a routerLink="acomodacoes">Acomodações</a>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/">Hotel</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><a routerLink="usuarios">Usuários</a></li>
+            <li><a routerLink="quartos">Quartos</a></li>
+            <li><a routerLink="acomodacoes">Acomodações</a></li>    
+        </ul>
+    </div><!--/.nav-collapse -->
+    </div>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="container" role="main">
+
+    <div class="jumbotron">
+        <h1>{{ title }}</h1>        
+    </div>
+
+    <a routerLink="usuarios" class="btn btn-lg btn-default">Usuários</a>
+    <a routerLink="quartos" class="btn btn-lg btn-default">Quartos</a>
+    <a routerLink="acomodacoes" class="btn btn-lg btn-default">Acomodações</a>
+    <br><br>
+    
+    <router-outlet></router-outlet>
+</div>

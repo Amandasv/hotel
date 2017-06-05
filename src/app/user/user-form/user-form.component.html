@@ -1,8 +1,24 @@
 <form>
-  Nome: <input type="text" [(ngModel)]="user.name" name="name"><br>
-  Email: <input type="text" [(ngModel)]="user.email" name="email"><br>
-  Data de nascimento: <input type="text" [(ngModel)]="user.birthdate" name="birthdate"><br>  
-  RG: <input type="text" [(ngModel)]="user.rg" name="rg"><br>
-  <input type="button" value="Enviar" (click)="saveUser()" >
-  <input type="button" value="Cancelar" (click)="reset()">
+  <div class="form-group">
+    <label for="name">Nome</label>
+    <input type="text" class="form-control" [(ngModel)]="user.name" name="name" id="name" placeholder="Nome">   
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" [(ngModel)]="user.email" name="email" id="email" placeholder="Email" >
+  </div>
+
+  <div class="form-group">
+    <label for="birthdate">Data de nascimento</label>
+    <input type="date" class="form-control" [(ngModel)]="user.birthdate" name="birthdate" id="birthdate" placeholder="dd/mm/aaaa">
+  </div>
+  
+  <div class="form-group">
+    <label for="rg">RG</label>
+    <input type="text" class="form-control" [(ngModel)]="user.rg" name="rg" id="rg" placeholder="RG">
+  </div>
+  
+  <input type="button" class="btn btn-primary" value="Enviar" (click)="saveUser()" >    
+  <input type="button" class="btn btn-warning" value="Cancelar" (click)="reset()">
 </form>

@@ -41,9 +41,9 @@ export class AccommodationFormComponent implements OnInit {
     else {
       this.service.updateAccommodation(this.id, this.accommodation);
     }
-    this.router.navigate(['/lista']);
+    this.router.navigate(['acomodacoes/lista']);
   }
   reset() {
-    this.router.navigate(['/lista']);
+    this.router.navigate(['acomodacoes/lista']);
   }
 }

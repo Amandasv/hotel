@@ -10,7 +10,7 @@
     <td>{{accommodation.category}}</td>
     <td>{{accommodation.price}}</td>
     <td>{{accommodation.description}}</td>
-    <td><a [routerLink]="['/edicao', accommodation.id]">Editar</a></td>
-    <td><a routerLink="/lista" (click)="delete(accommodation)">Remover</a></td>
+    <td><a [routerLink]="['/acomodacoes/edicao', accommodation.id]">Editar</a></td>
+    <td><a routerLink="/acomodacoes/lista" (click)="delete(accommodation)">Remover</a></td>
   </tr>
 </table>
