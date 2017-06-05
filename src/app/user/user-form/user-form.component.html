@@ -1,0 +1,8 @@
+<form>
+  Nome: <input type="text" [(ngModel)]="user.name" name="name"><br>
+  Email: <input type="text" [(ngModel)]="user.email" name="email"><br>
+  Data de nascimento: <input type="text" [(ngModel)]="user.birthdate" name="birthdate"><br>  
+  RG: <input type="text" [(ngModel)]="user.rg" name="rg"><br>
+  <input type="button" value="Enviar" (click)="saveUser()" >
+  <input type="button" value="Cancelar" (click)="reset()">
+</form>

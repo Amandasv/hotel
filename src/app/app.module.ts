@@ -15,15 +15,26 @@ import { RoomComponent } from './room/room.component';
 import { RoomService } from "./room/room.service";
 import { RoomFormComponent } from "./room/room-form/room-form.component";
 import { RoomTableComponent } from "./room/room-table/room-table.component";
+import { UserComponent } from './user/user.component';
+import { UserFormComponent } from './user/user-form/user-form.component';
+import { UserTableComponent } from './user/user-table/user-table.component';
+import { UserService } from "app/user/user.service";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'quartos/lista', pathMatch: 'full' },
+ // { path: '', redirectTo: 'quartos/lista', pathMatch: 'full' },
   { path: 'quartos/lista', component: RoomTableComponent },
-  { path: 'quarto/novo', component: RoomFormComponent },
-  { path: 'quarto/edicao/:id', component: RoomFormComponent },
+  { path: 'quartos/novo', component: RoomFormComponent },
+  { path: 'quartos/edicao/:id', component: RoomFormComponent },
   { path: 'acomodacoes/lista', component: AccommodationTableComponent },
-  { path: 'acomodacao/novo', component: AccommodationFormComponent },
-  { path: 'acomodacao/edicao/:id', component: AccommodationFormComponent },
+  { path: 'acomodacoes/novo', component: AccommodationFormComponent },
+  { path: 'acomodacoes/edicao/:id', component: AccommodationFormComponent },
+  { path: 'usuarios/lista', component: UserTableComponent },
+  { path: 'usuarios/novo', component: UserFormComponent },
+  { path: 'usuarios/edicao/:id', component: UserFormComponent },
+  { path: 'usuarios', component: UserComponent },
+  { path: 'acomodacoes', component: AccommodationComponent },
+  { path: 'quartos', component: RoomComponent },
+  
   //{ path: '', component},
   
 ];
@@ -36,6 +47,9 @@ const routes: Routes = [
     RoomComponent,
     RoomFormComponent,
     RoomTableComponent,
+    UserComponent,
+    UserFormComponent,
+    UserTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +57,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AccommodationService, RoomService],
+  providers: [AccommodationService, RoomService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
