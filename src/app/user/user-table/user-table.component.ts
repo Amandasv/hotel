@@ -9,14 +9,18 @@ import { UserService } from "app/user/user.service";
 })
 export class UserTableComponent implements OnInit {
 
- users: User[] = [];
+ users: User[];
+ error: string;
 
   constructor(private service: UserService) {
 
   }
 
-  ngOnInit(): void {
-    this.users = this.service.getUsers();
+  ngOnInit() {
+    this.service.getUsers().subscribe(
+      usersX => this.users = usersX,
+      error => this.error = error
+    );
   }
 
   delete(user:User){

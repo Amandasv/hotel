@@ -1,45 +1,51 @@
 import { Injectable } from '@angular/core';
 import { User } from "app/user/user";
+// import { Observable } from 'rxjs/RX';
+import {Observable} from 'rxjs/Observable';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class UserService {
-  users: User[] = [{
-    id: 1,
-    name: "nome",
-    email: "usuario@email.com",
-    birthdate: "01/01/1990",
-    rg: "1234567890"
-  }];
+  users: User[] = [];
+  resourceUrl = "https://senacnodebackend.herokuapp.com/users";
 
-  autoIncrement:number = 1;
+constructor(private http:Http) {
 
-constructor() { }
+}
 
-  getUsers(){
-    console.log('users: ', this.users);
-    return this.users;
+  getUsers():Observable<User[]>{
+    return this.http.get(this.resourceUrl)
+            .map((resp:Response)=>resp.json())
+            .catch((erro:any)=>Observable.throw(erro));
   }
 
-  addUser(room: User){
-    room.id = this.autoIncrement++;
-    this.users.push(room);
+  addUser(user:User):Observable<User>{
+    let headers = new Headers({'Content-Type':'application/json'});
+    let options = new RequestOptions({headers:headers});
+    return this.http.post(this.resourceUrl,
+          JSON.stringify(user),
+          options)
+        .map((res:Response)=>{})
+        .catch((erro:any)=>Observable.throw(erro));
   }
 
-  deleteUser(room: User){
-    let index = this.users.indexOf(room, 0);
+  deleteUser(user: User){
+    let index = this.users.indexOf(user, 0);
     if (index > -1) {
       this.users.splice(index, 1);
     }
   }
 
-  updateUser(id: number, room: User){
+  updateUser(id: number, user: User){
     let index = this.users.indexOf(this.getUserById(id), 0);
-    this.users[index] = room;
+    this.users[index] = user;
   }
 
   getUserById(id: number){
-    return this.users.find(room => room.id == id);
+    return this.users.find(user => user.id == id);
   }
 
 }
