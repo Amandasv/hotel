@@ -18,6 +18,7 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit() {
     this.service.getUsers().subscribe(
+      // usersX => this.funcao(usersX),
       usersX => this.users = usersX,
       error => this.error = error
     );
@@ -26,4 +27,10 @@ export class UserTableComponent implements OnInit {
   delete(user:User){
     this.service.deleteUser(user);
   }
+
+  // funcao(users:User[]){
+  //   this.users = users;
+  //   console.log(users);
+  // }
+
 }

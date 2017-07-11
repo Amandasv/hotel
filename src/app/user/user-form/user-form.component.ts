@@ -11,7 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UserFormComponent implements OnInit {
   title = "Cadastro de usuário";
   user: User;
-  id: number;
+  id: string;
+  error: string;
 
   constructor(
     private service: UserService,
@@ -22,24 +23,30 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
 
-    if(isNaN(this.id)){
+    if(typeof(this.id) == 'undefined'){
       this.user = new User();
     }
     else {
-      this.user = Object.assign({},
-        this.service.getUserById(this.id)
+      this.service.getUserById(this.id).subscribe(
+        user => this.user = user,
+        error => this.error = error
       );
     }
-    
+
   }
 
   saveUser(){
-    if(isNaN(this.id)){
-      this.service.addUser(this.user);
-      this.user = new User();
+    if(typeof(this.id) == 'undefined'){
+      this.service.addUser(this.user).subscribe(
+        user => this.router.navigate(['/usuarios/lista']),
+        error => this.error = error
+      )
     }
     else {
-      this.service.updateUser(this.id, this.user);
+      this.service.updateUser(this.id, this.user).subscribe(
+        data => this.router.navigate(['/usuarios/lista']),
+        error => this.error = error
+      );
     }
     this.router.navigate(['/usuarios/lista']);
   }

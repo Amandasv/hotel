@@ -33,19 +33,29 @@ constructor(private http:Http) {
   }
 
   deleteUser(user: User){
-    let index = this.users.indexOf(user, 0);
-    if (index > -1) {
-      this.users.splice(index, 1);
-    }
+    this.http.delete(this.resourceUrl + '/' + user._id).subscribe((res) => {
+      console.log(res)
+    });
   }
 
-  updateUser(id: number, user: User){
-    let index = this.users.indexOf(this.getUserById(id), 0);
-    this.users[index] = user;
+  updateUser(id: string, user: User):Observable<User>{
+    let url = this.resourceUrl + '/' + id;
+    let bodyString = JSON.stringify(user);
+    console.log(bodyString);
+    let headers = new Headers({'Content-Type':'application/json'});
+    let options = new RequestOptions({headers:headers});
+    return this.http.put(url,
+          bodyString,
+          options)
+        .map((res:Response)=>{})
+        .catch((erro:any)=>Observable.throw(erro));
   }
 
-  getUserById(id: number){
-    return this.users.find(user => user.id == id);
+
+  getUserById(id: string):Observable<User>{
+    return this.http.get(this.resourceUrl +'/'+ id)
+            .map((resp:Response)=>resp.json())
+            .catch((erro:any)=>Observable.throw(erro));
   }
 
 }
