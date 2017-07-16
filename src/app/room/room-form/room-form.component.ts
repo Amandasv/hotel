@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from "../room.service";
 import { Room } from "../room";
+import { RoomService } from "../room.service";
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,7 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class RoomFormComponent implements OnInit {
   title = "Cadastro de acomodação";
   room: Room;
-  id: number;
+  id: string;
+  error: string;
 
   constructor(
     private service: RoomService,
@@ -22,24 +23,30 @@ export class RoomFormComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
 
-    if(isNaN(this.id)){
+    if(typeof(this.id) == 'undefined'){
       this.room = new Room();
     }
     else {
-      this.room = Object.assign({},
-        this.service.getRoomById(this.id)
+      this.service.getRoomById(this.id).subscribe(
+        room => this.room = room,
+        error => this.error = error
       );
     }
-    
+
   }
 
   saveRoom(){
-    if(isNaN(this.id)){
-      this.service.addRoom(this.room);
-      this.room = new Room();
+    if(typeof(this.id) == 'undefined'){
+      this.service.addRoom(this.room).subscribe(
+        room => this.router.navigate(['/quartos/lista']),
+        error => this.error = error
+      )
     }
     else {
-      this.service.updateRoom(this.id, this.room);
+      this.service.updateRoom(this.id, this.room).subscribe(
+        data => this.router.navigate(['/quartos/lista']),
+        error => this.error = error
+      );
     }
     this.router.navigate(['/quartos/lista']);
   }

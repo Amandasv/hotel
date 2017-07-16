@@ -9,14 +9,18 @@ import { RoomService } from "../room.service";
 })
 export class RoomTableComponent implements OnInit {
 
- rooms: Room[] = [];
+ rooms: Room[];
+ error: string;
 
   constructor(private service: RoomService) {
 
   }
 
   ngOnInit(): void {
-    this.rooms = this.service.getRooms();
+    this.service.getRooms().subscribe(
+      rooms => this.rooms = rooms,
+      error => this.error = error
+    );
   }
 
   delete(room:Room){

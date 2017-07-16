@@ -1,5 +1,5 @@
 export class Room {
-    id: number;
+    _id: string;
     roomNumber: string;
     category: string;
     price: number;

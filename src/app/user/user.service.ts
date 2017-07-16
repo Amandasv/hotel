@@ -12,9 +12,7 @@ export class UserService {
   users: User[] = [];
   resourceUrl = "https://senacnodebackend.herokuapp.com/users";
 
-constructor(private http:Http) {
-
-}
+constructor(private http:Http) { }
 
   getUsers():Observable<User[]>{
     return this.http.get(this.resourceUrl)
@@ -34,7 +32,7 @@ constructor(private http:Http) {
 
   deleteUser(user: User){
     this.http.delete(this.resourceUrl + '/' + user._id).subscribe((res) => {
-      console.log(res)
+
     });
   }
 
