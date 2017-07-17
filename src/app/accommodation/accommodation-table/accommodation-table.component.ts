@@ -9,14 +9,18 @@ import { AccommodationService } from "../accommodation.service";
 })
 export class AccommodationTableComponent implements OnInit {
 
- accommodations: Accommodation[] = [];
+  accommodations: Accommodation[];
+  error: string;
 
   constructor(private service: AccommodationService) {
-  
+
   }
 
   ngOnInit(): void {
-    this.accommodations = this.service.getAccommodations();
+    this.service.getAccommodations().subscribe(
+      accommodations => this.accommodations = accommodations,
+      error => this.error = error
+    );
   }
 
   delete(accommodation:Accommodation){

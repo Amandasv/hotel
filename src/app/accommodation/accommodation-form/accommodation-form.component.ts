@@ -11,7 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AccommodationFormComponent implements OnInit {
   title = "Cadastro de acomodação";
   accommodation: Accommodation;
-  id: number;
+  id: string;
+  error: string;
 
   constructor(
     private service: AccommodationService,
@@ -22,28 +23,33 @@ export class AccommodationFormComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
 
-    if(isNaN(this.id)){
+    if(typeof(this.id) == 'undefined'){
       this.accommodation = new Accommodation();
     }
     else {
-      this.accommodation = Object.assign({},
-        this.service.getAccommodationById(this.id)
+      this.service.getAccommodationById(this.id).subscribe(
+        accommodation => this.accommodation = accommodation,
+        error => this.error = error
       );
     }
-    
   }
 
   saveAccommodation(){
-    if(isNaN(this.id)){
-      this.service.addAccommodation(this.accommodation);
-      this.accommodation = new Accommodation();
+    if(typeof(this.id) == 'undefined'){
+      this.service.addAccommodation(this.accommodation).subscribe(
+        accommodation => this.router.navigate(['/acomodacoes/lista']),
+        error => this.error = error
+      )
     }
     else {
-      this.service.updateAccommodation(this.id, this.accommodation);
+      this.service.updateAccommodation(this.id, this.accommodation).subscribe(
+        data => this.router.navigate(['/acomodacoes/lista']),
+        error => this.error = error
+      );
     }
-    this.router.navigate(['acomodacoes/lista']);
+    this.router.navigate(['/acomodacoes/lista']);
   }
   reset() {
-    this.router.navigate(['acomodacoes/lista']);
+    this.router.navigate(['/acomodacoes/lista']);
   }
 }

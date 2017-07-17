@@ -1,5 +1,5 @@
 export class Accommodation {
-    id:number;
+    _id:string;
     category:string;
     price: number;
     description:string;
